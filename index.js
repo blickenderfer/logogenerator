@@ -1,0 +1,32 @@
+const inquirer = require("inquirer"); 
+const fs = require("fs"); 
+const {Triangle, Circle, Square} = require("./lib/shapes");
+
+function promptUser(){
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Which 1-3 characters would you like include in the logo?",
+                name: "text",
+            },
+            {
+                type: "input",
+                message: "What color would you like the text to be?",
+                name: "text-color", 
+            },
+            {
+                type: "list",
+                message: "Which shape would you like?",
+                name: "shape",
+                choices: ["Triangle", "Circle", "Square"]
+            },
+            {
+                type: "input",
+                message: "What color would you like the shape to be?",
+                name: "shape-color",
+            }
+
+        ])
+        
+}
