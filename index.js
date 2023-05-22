@@ -1,13 +1,14 @@
-const inquirer = require("inquirer"); 
-const fs = require("fs"); 
-const {Triangle, Circle, Square} = require("./lib/shapes");
+import inquirer from "inquirer"; 
+import fs from "fs";
+import {Triangle, Circle, Square} from "./lib/shapes.js";
+// import prompt from "inquirer/lib/ui/prompt";
 
 function createSvgFile(answer){
     let mySvg = "<svg version = '1.1' width = '300' height = '200' xmlns = 'http://www.w3.org/2000/svg'>"
     let shapeChoice = new (eval(answer.shape))()
     shapeChoice.setColor(answer.shapeColor)
     mySvg += shapeChoice.render()
-    mySvg += `<text x= "150" y = "130" text-anchor = "middle" font-size: "40" fill = "${answer.textColor}"> ${answer.text} </text>`
+    mySvg += `<text x= "150" y = "130" text-anchor = "middle" font-size = "40px" fill = "${answer.textColor}"> ${answer.text} </text>`
     mySvg += "</svg>"
     fs.writeFile("logo.svg", mySvg, err=>{
         err?console.log(err): console.log("Generated logo.svg")
@@ -44,3 +45,5 @@ function promptUser(){
             createSvgFile(answer)
         }) 
 }
+
+promptUser();
